@@ -1,6 +1,6 @@
 {
   "name": "bunyan-seq",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Bunyan stream that sends log events to Seq",
   "main": "index.js",
   "scripts": {
