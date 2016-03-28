@@ -35,3 +35,5 @@ You can specify property names as tokens in the log message to control how the e
 // Seq will render this as 'Hi, Alice!'
 log.info({user: 'Alice', 'Hi, {user}!');
 ```
+
+Read the [complete documentation](http://docs.getseq.net/v3/docs/using-nodejs).
