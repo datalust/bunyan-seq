@@ -1,0 +1,31 @@
+{
+  "name": "bunyan-seq",
+  "version": "0.0.1",
+  "description": "A Bunyan stream that sends log events to Seq",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "start": "node ./example/example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/continuousit/bunyan-seq.git"
+  },
+  "keywords": [
+    "bunyan",
+    "seq"
+  ],
+  "author": "Continuous IT and contributors",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/continuousit/bunyan-seq/issues"
+  },
+  "homepage": "https://github.com/continuousit/bunyan-seq#readme",
+  "devDependencies": {
+    "bunyan": "^1.8.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "seq-logging": "^0.1.2"
+  }
+}

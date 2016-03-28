@@ -1,0 +1,32 @@
+version: '{build}'
+environment:
+  NODE_VERSION: "4.2.2"
+  NPM_RC:
+    secure: D9/jf5B7zsmYTe3tYUm0Il/THKqk+wmR05/eyldxpZIeqBame6GXSKoXpalQKgKrVJ+H1OAVkvLCfg33N7JlIr7tWMM5BLdCUwVU2p7NwiY=
+install:
+- ps: >-
+    $ErrorActionPreference = "SilentlyContinue"
+    
+    Install-Product node $env:NODE_VERSION
+    
+    & npm install -g npm 2>&1
+    
+    & npm install 2>&1
+    
+    trap { "Error: $_" }
+    
+    $LastExitCode = 0
+    
+    & npm --version
+build: none
+test_script:
+- cmd: npm test
+deploy_script:
+- cmd: >-
+    if %APPVEYOR_REPO_BRANCH% neq master exit 
+    
+    node --version
+    
+    echo %NPM_RC%> .npmrc
+    
+    npm publish
