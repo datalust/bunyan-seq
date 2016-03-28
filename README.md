@@ -1,4 +1,5 @@
-# bunyan-seq
+# bunyan-seq [![Build status](https://ci.appveyor.com/api/projects/status/mrcbbrd33prih7bb/branch/master?svg=true)](https://ci.appveyor.com/project/seqlogs/bunyan-seq/branch/master) [![NPM](https://img.shields.io/npm/v/bunyan-seq.svg)](https://www.npmjs.com/package/bunyan-seq)
+
 
 A Bunyan stream to send events to [Seq](https://getseq.net).
 
