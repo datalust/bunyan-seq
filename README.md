@@ -1,4 +1,4 @@
-# bunyan-seq [![Build status](https://ci.appveyor.com/api/projects/status/mrcbbrd33prih7bb/branch/master?svg=true)](https://ci.appveyor.com/project/seqlogs/bunyan-seq/branch/master) [![NPM](https://img.shields.io/npm/v/bunyan-seq.svg)](https://www.npmjs.com/package/bunyan-seq)
+# bunyan-seq [![Build status](https://ci.appveyor.com/api/projects/status/mrcbbrd33prih7bb?svg=true)](https://ci.appveyor.com/project/datalust/bunyan-seq) [![NPM](https://img.shields.io/npm/v/bunyan-seq.svg)](https://www.npmjs.com/package/bunyan-seq)
 
 
 A Bunyan stream to send events to [Seq](https://getseq.net). Tested with Node.js versions 4.2.2 and up.
