@@ -12,9 +12,14 @@ var log = bunyan.createLogger({
         },
         seq.createStream({
             serverUrl: 'http://localhost:5341',
-            level: 'info'
+            level: 'info',
+            reemitErrorEvents: true
         })
     ]
+});
+
+log.on('error', function(err, stream){
+    console.log('Logging failed:', err);
 });
 
 log.info('hi');

@@ -23,6 +23,10 @@ class SeqStream extends stream.Writable {
             onError(e);
         };        
         this._logger = new seq.Logger(loggerConfig);
+
+        // At least one listener must be specified, or else the default behavior will
+        // be to throw an exception (and halt logging).
+        this.on('error', function(){});
     }
     
     write(event) {

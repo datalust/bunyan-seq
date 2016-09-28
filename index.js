@@ -10,7 +10,8 @@ module.exports = {
             name: config.name,
             level: config.level,
             type: 'raw',
-            stream: stream
+            stream: stream,
+            reemitErrorEvents: config.reemitErrorEvents
         };
     }
 };
