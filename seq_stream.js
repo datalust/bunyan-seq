@@ -16,7 +16,7 @@ class SeqStream extends stream.Writable {
     constructor(config) {        
         super();
         
-        let loggerConfig = config || {};
+        let loggerConfig = config == null ? {} : {...config};
         let onError = loggerConfig.onError || function() {};
         loggerConfig.onError = (e) => {
             this.emit('error', e);
