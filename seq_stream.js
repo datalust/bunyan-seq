@@ -53,6 +53,12 @@ class SeqStream extends stream.Writable {
         
         this._logger.emit(forSeq);
     }
+
+    // Force the underlying logger to flush at the time of the call
+    // and wait for pending writes to complete
+    flush() {
+        return this._logger.flush();
+    }
 }
 
 module.exports = SeqStream;
