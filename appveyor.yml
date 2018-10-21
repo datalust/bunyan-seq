@@ -1,8 +1,8 @@
 version: '{build}'
 environment:
   NODE_VERSION: "8"
-  NPM_RC:
-    secure: D9/jf5B7zsmYTe3tYUm0Il/THKqk+wmR05/eyldxpZIeqBame6GXSKoXpalQKgKrVJ+H1OAVkvLCfg33N7JlIr7tWMM5BLdCUwVU2p7NwiY=
+  NPM_TOKEN:
+    secure: EHXYh/mwUW19RjGigbbIKQYH7cJY5VCFo2YyTlEwA940q86TiMjFRGncJgHjJnLU
 install:
 - ps: >-
     $ErrorActionPreference = "SilentlyContinue"
@@ -22,11 +22,11 @@ build: none
 test_script:
 - cmd: npm test
 deploy_script:
-- cmd: >-
-    if %APPVEYOR_REPO_BRANCH% neq master exit 
+- ps: >-
+    if ($env:APPVEYOR_REPO_BRANCH -ne 'master') { exit } 
     
     node --version
     
-    echo %NPM_RC%> .npmrc
+    echo "//<npm-registry>:8080/:_authToken=$NPM_TOKEN" > ~/.npmrc
     
     npm publish
