@@ -27,6 +27,6 @@ deploy_script:
     
     node --version
     
-    echo "//<npm-registry>:8080/:_authToken=$NPM_TOKEN" > ~/.npmrc
+    echo "//<npm-registry>:8080/:_authToken=$env:NPM_TOKEN" > ~/.npmrc
     
     npm publish
