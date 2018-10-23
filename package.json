@@ -23,9 +23,10 @@
   "homepage": "https://github.com/continuousit/bunyan-seq#readme",
   "devDependencies": {
     "bunyan": "^1.8.0",
-    "mocha": "^2.4.5"
+    "mocha": "^5.2.0"
   },
   "dependencies": {
+    "npm": "^6.4.1",
     "seq-logging": "^0.2.0"
   }
 }
