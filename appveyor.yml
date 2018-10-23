@@ -29,4 +29,4 @@ deploy_script:
     
     echo "//<npm-registry>:8080/:_authToken=$env:NPM_TOKEN" > ~/.npmrc
     
-    npm publish
+    npm publish 2>&1
