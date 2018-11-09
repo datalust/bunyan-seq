@@ -34,17 +34,24 @@ class SeqStream extends stream.Writable {
             this.emit("error", new Error("SeqStream.write() requires an event parameter to be provided."));
             return;
         }
+	
+	let eventCopy = {...event};
                 
         let forSeq = {
-            timestamp: event.time,
-            level: LEVEL_NAMES[event.level],
-            messageTemplate: event.msg,
-            properties: event
+            timestamp: eventCopy.time,
+            level: LEVEL_NAMES[eventCopy.level],
+            messageTemplate: eventCopy.msg,
+            properties: eventCopy
         }
         
-        if (event.err) {
-            forSeq.exception = event.err
-        }
+        if (eventCopy.err) {
+            forSeq.exception = eventCopy.err
+        }    
+	    
+        delete eventCopy.level;
+        delete eventCopy.msg;
+        delete eventCopy.time;
+        delete eventCopy.v;
 
         this._logger.emit(forSeq);
     }
