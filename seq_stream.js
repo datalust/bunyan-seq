@@ -45,12 +45,7 @@ class SeqStream extends stream.Writable {
         if (event.err) {
             forSeq.exception = event.err
         }
-        
-        delete event.level;
-        delete event.msg;
-        delete event.time;
-        delete event.v;
-        
+
         this._logger.emit(forSeq);
     }
 
