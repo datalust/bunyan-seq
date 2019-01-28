@@ -26,6 +26,6 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "seq-logging": "^0.2.0"
+    "seq-logging": "^0.3.1"
   }
 }
