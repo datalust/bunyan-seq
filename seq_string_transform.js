@@ -4,18 +4,18 @@ let stream = require('stream');
 let seq = require('seq-logging');
 
 let LEVEL_NAMES = {
-    'Verbose': 10,
-    'Debug': 20,
-    'Information': 30,
-    'Warning': 40,
-    'Error': 50,
-    'Fatal': 60,
+    Verbose: 10,
+    Debug: 20,
+    Information: 30,
+    Warning: 40,
+    Error: 50,
+    Fatal: 60
 };
 
 /**
- * Forwards ndjson objects as js-objects. 
- * 
- * Depending on config, other lines will be forwarded or dropped 
+ * Forwards ndjson objects as js-objects.
+ *
+ * Depending on config, other lines will be forwarded or dropped
  */
 class SeqStringTransform extends stream.Transform {
     constructor(config) {
@@ -26,7 +26,6 @@ class SeqStringTransform extends stream.Transform {
         this._logOtherAs = false;
         let { logOtherAs } = config || {};
         if (logOtherAs) {
-
             if (LEVEL_NAMES[logOtherAs]) {
                 this._logOtherAs = LEVEL_NAMES[logOtherAs];
             } else {
@@ -52,7 +51,6 @@ class SeqStringTransform extends stream.Transform {
                 if (this._logOtherAs) {
                     this.handleUnstructuredMessage(chunk);
                 }
-
             }
         }
         callback(null);
@@ -80,7 +78,7 @@ class SeqStringTransform extends stream.Transform {
                     time: this._bufferTime,
                     level: this._logOtherAs,
                     msg: this._buffer.join('\n')
-                })
+                });
             }
             this._bufferTime = false;
             this._buffer = [];

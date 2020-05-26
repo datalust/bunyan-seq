@@ -5,7 +5,7 @@ const split2 = require('split2');
 
 const pkg = require('./package.json');
 const SeqStream = require('./seq_stream');
-const StringStream = require("./seq_string_transform");
+const StringStream = require('./seq_string_transform');
 
 function main() {
   program
@@ -25,12 +25,9 @@ function main() {
     )
     .action(({ serverUrl, apiKey, logOtherAs }) => {
       try {
-        const seqStream = new SeqStream({ serverUrl, apiKey })
+        const seqStream = new SeqStream({ serverUrl, apiKey });
 
-        process.stdin
-          .pipe(split2())
-          .pipe(new StringStream({ logOtherAs }))
-          .pipe(seqStream);
+        process.stdin.pipe(split2()).pipe(new StringStream({ logOtherAs })).pipe(seqStream);
 
         const handler = (err, name) => {
           seqStream.end(() => {
@@ -43,7 +40,6 @@ function main() {
         process.on('SIGTERM', () => handler(null, 'SIGTERM'));
         process.on('SIGLOST', () => handler(null, 'SIGLOST'));
         process.on('SIGABRT', () => handler(null, 'SIGABRT'));
-
       } catch (error) {
         console.error(error);
       }

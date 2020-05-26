@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 let stream = require('stream');
 let seq = require('seq-logging');
@@ -17,7 +17,7 @@ class SeqStream extends stream.Writable {
         super({ objectMode: true });
         const onError = (e) => {
             this.destroy(e);
-            if (config && typeof config.onError === "function") {
+            if (config && typeof config.onError === 'function') {
                 config.onError(e);
             }
         };
@@ -26,7 +26,6 @@ class SeqStream extends stream.Writable {
 
     _write(logEntry, enc, cb) {
         if (logEntry) {
-
             let { time, level, msg, err, error, stack, v, ...props } = logEntry;
 
             // Get the properties from the error
@@ -37,7 +36,7 @@ class SeqStream extends stream.Writable {
                 messageTemplate: msg ? msg : errMessage,
                 properties: { ...errorProps, ...props },
                 exception: stack ? stack : errStack
-            }
+            };
             try {
                 this._logger.emit(seqEntry);
             } catch (err) {

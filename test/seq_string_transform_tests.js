@@ -1,5 +1,5 @@
 "use strict";
-const { Writable } = require("stream");
+
 const assert = require('assert');
 const SeqStringTransform = require('../seq_string_transform');
 
@@ -12,9 +12,9 @@ describe('SeqStringTransform', () => {
    describe('object forwards', () => {
       it('trasforms json-strings to objects', function (done) {
          const stream = new SeqStringTransform();
-         const testObject = { "test": "test" };
+         const testObject = { test: 'test' };
 
-         stream.once("data", (data) => {
+         stream.once('data', (data) => {
             try {
                assert.deepEqual(data, testObject);
                done();
@@ -26,14 +26,14 @@ describe('SeqStringTransform', () => {
          stream.end();
       });
       it('trasforms strings to objects', function (done) {
-         const stream = new SeqStringTransform({ logOtherAs: "Information" });
-         const testString = "This is a test string";
+         const stream = new SeqStringTransform({ logOtherAs: 'Information' });
+         const testString = 'This is a test string';
 
-         stream.once("data", (data) => {
+         stream.once('data', (data) => {
             try {
                assert.equal(data.msg, testString);
                assert.equal(data.level, 30);
-               assert(data.time instanceof Date, "Error in with timestamp format");
+               assert(data.time instanceof Date, 'Error in with timestamp format');
                done();
             } catch (err) {
                done(err);
@@ -44,10 +44,10 @@ describe('SeqStringTransform', () => {
       });
       it('trasforms does not transform', function (done) {
          const stream = new SeqStringTransform();
-         const testString = "This is a test string";
-         const testObject = { "test": "test" };
+         const testString = 'This is a test string';
+         const testObject = { test: 'test' };
 
-         stream.once("data", (data) => {
+         stream.once('data', (data) => {
             try {
                assert.deepEqual(data, testObject);
                done();
@@ -60,14 +60,14 @@ describe('SeqStringTransform', () => {
          stream.end();
       });
       it('trasforms transform after 1 sec', function (done) {
-         const stream = new SeqStringTransform({ logOtherAs: "Information" });
-         const testString = "This is a test string";
+         const stream = new SeqStringTransform({ logOtherAs: 'Information' });
+         const testString = 'This is a test string';
 
-         stream.once("data", (data) => {
+         stream.once('data', (data) => {
             try {
                assert.equal(data.msg, testString);
                assert.equal(data.level, 30);
-               assert(data.time instanceof Date, "Error in with timestamp format");
+               assert(data.time instanceof Date, 'Error in with timestamp format');
                done();
             } catch (err) {
                done(err);
