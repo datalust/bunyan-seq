@@ -4,7 +4,8 @@ const program = require('commander');
 const split2 = require('split2');
 
 const pkg = require('./package.json');
-const bunyanSeq = require('./index');
+const SeqStream = require('./seq_stream');
+const StringStream = require("./seq_string_transform");
 
 function main() {
   program
@@ -24,12 +25,15 @@ function main() {
     )
     .action(({ serverUrl, apiKey, logOtherAs }) => {
       try {
-        const writeStream = bunyanSeq.createStream({ serverUrl, apiKey, logOtherAs });
+        const seqStream = new SeqStream({ serverUrl, apiKey })
 
-        process.stdin.pipe(split2()).pipe(writeStream);
+        process.stdin
+          .pipe(split2())
+          .pipe(new StringStream({ logOtherAs }))
+          .pipe(seqStream);
 
         const handler = (err, name) => {
-          writeStream.end(() => {
+          seqStream.end(() => {
             process.exit(0);
           });
         };
@@ -39,6 +43,7 @@ function main() {
         process.on('SIGTERM', () => handler(null, 'SIGTERM'));
         process.on('SIGLOST', () => handler(null, 'SIGLOST'));
         process.on('SIGABRT', () => handler(null, 'SIGABRT'));
+
       } catch (error) {
         console.error(error);
       }

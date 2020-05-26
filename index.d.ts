@@ -4,7 +4,6 @@ declare namespace BunyanSeq {
   interface SeqConfig {
     serverUrl?: string;
     apiKey?: string;
-    logOtherAs?: 'Verbose' | 'Debug' | 'Information' | 'Warning' | 'Error' | 'Fatal';
     maxBatchingTime?: number;
     eventSizeLimit?: number;
     batchSizeLimit?: number;
