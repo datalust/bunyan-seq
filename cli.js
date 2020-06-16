@@ -27,7 +27,7 @@ function main() {
       try {
         const seqStream = new SeqStream({ serverUrl, apiKey });
 
-        process.stdin.pipe(split2()).pipe(new StringStream({ logOtherAs })).pipe(seqStream);
+        process.stdin.pipe(split2()).pipe(new StringStream({ logOtherAs })).pipe(seqStream).on("error", console.error);
 
         const handler = (err, name) => {
           seqStream.end(() => {
