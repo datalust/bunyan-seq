@@ -25,7 +25,7 @@ test_script:
 - cmd: npm test
 deploy_script:
 - ps: >-
-    if ($env:APPVEYOR_REPO_BRANCH -ne 'master') { exit } 
+    if ($env:APPVEYOR_REPO_BRANCH -ne 'main') { exit } 
         
     $ErrorActionPreference = "SilentlyContinue"
     
