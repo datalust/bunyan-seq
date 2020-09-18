@@ -21,7 +21,9 @@ class SeqStream extends stream.Writable {
                 config.onError(e);
             }
         };
-        this._logger = new seq.Logger({ ...config, onError });
+        let { additionalProperties, ...loggerConfig } = config == null ? {} : { ...config }
+        this._additionalProperties = additionalProperties
+        this._logger = new seq.Logger({ ...loggerConfig, onError })
     }
 
     _write(logEntry, enc, cb) {
@@ -34,9 +36,10 @@ class SeqStream extends stream.Writable {
                 timestamp: new Date(time),
                 level: LEVEL_NAMES[level],
                 messageTemplate: msg ? msg : errMessage,
-                properties: { ...errorProps, ...props },
+                properties: { ...errorProps, ...props, ...this._additionalProperties },
                 exception: stack ? stack : errStack
-            };
+            }
+
             try {
                 this._logger.emit(seqEntry);
             } catch (err) {

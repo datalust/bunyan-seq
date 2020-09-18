@@ -46,7 +46,7 @@ npm install -g bunyan-seq
 Then, pipe the output of your bunyan-enabled app to it:
 
 ```shell
-node your-app.js | bunyan-seq --serverUrl http://localhost:5341 --apiKey 1234567890
+node your-app.js | bunyan-seq --serverUrl http://localhost:5341 --apiKey 1234567890  --property applicationName=BunyanSeqExampleApp
 ```
 
 `bunyan-seq` accepts the following parameters:
@@ -54,6 +54,7 @@ node your-app.js | bunyan-seq --serverUrl http://localhost:5341 --apiKey 1234567
 - `serverUrl` - this is the base URL of your Seq server; if omitted, the default value of `http://localhost:5341` will be used
 - `apiKey` - your Seq API key, if one is required; the default does not send an API key
 - `logOtherAs` - log other output (not formatted through bunyan) to seq at this loglevel. Useful to capture messages if the node process crashes or smilar.
+- `property` - add additional properties to all logs sent to Seq
 
 #### Capturing other output
 
