@@ -22,14 +22,14 @@ var log = bunyan.createLogger({
       level: 'info',
       reemitErrorEvents: true,
       onError: (e) => {
-        console.error('[SeqStreamCustomError] failed to log events:', e)
+        console.error('[SeqStreamCustomError] failed to log events:', e);
       }
     })
   ]
 });
 
 log.info('hi');
-log.warn({lang: 'fr'}, 'au revoir');
+log.warn({ lang: 'fr' }, 'au revoir');
 ```
 
 You can specify property names as tokens in the log message to control how the event is rendered in Seq:
