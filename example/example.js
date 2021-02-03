@@ -13,15 +13,13 @@ var log = bunyan.createLogger({
         seq.createStream({
             serverUrl: 'http://localhost:5341',
             level: 'info',
-            reemitErrorEvents: true
+            reemitErrorEvents: true,
+            onError: (e) => {
+              console.error('[SeqStreamCustomError] failed to log events:', e)
+            }
         })
     ]
 });
 
-log.on('error', function(err, stream){
-    console.log('Logging failed:', err);
-});
-
 log.info('hi');
 log.warn({lang: 'fr'}, 'au revoir');
-

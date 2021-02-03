@@ -15,15 +15,10 @@ let LEVEL_NAMES = {
 class SeqStream extends stream.Writable {
     constructor(config) {
         super({ objectMode: true });
-        const onError = (e) => {
-            this.destroy(e);
-            if (config && typeof config.onError === 'function') {
-                config.onError(e);
-            }
-        };
-        let { additionalProperties, ...loggerConfig } = config == null ? {} : { ...config }
+        let { additionalProperties, ...loggerConfig } = config == null ? {} : { ...config };
+        loggerConfig.onError = loggerConfig.onError || function (e) { console.error('[SeqStream] Log batch failed\n', e) };
         this._additionalProperties = additionalProperties
-        this._logger = new seq.Logger({ ...loggerConfig, onError })
+        this._logger = new seq.Logger(loggerConfig)
     }
 
     _write(logEntry, enc, cb) {
@@ -43,7 +38,8 @@ class SeqStream extends stream.Writable {
             try {
                 this._logger.emit(seqEntry);
             } catch (err) {
-                console.error(err, seqEntry);
+                this._logger.emit(err);
+                //console.error(err, seqEntry);
             }
         }
         cb();
