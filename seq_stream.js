@@ -42,8 +42,7 @@ class SeqStream extends stream.Writable {
       try {
         this._logger.emit(seqEntry);
       } catch (err) {
-        this._logger.emit(err);
-        //console.error(err, seqEntry);
+        console.error(err, seqEntry);
       }
     }
     cb();
