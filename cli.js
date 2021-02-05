@@ -23,23 +23,28 @@ function main() {
         return undefined;
       }
     )
-    .option('-p, --property <property>', 'Properties to add to all logs', (value, previous) => {
-      const valueSplit = value.split('=')
-      if(valueSplit.length !== 2) {
-        console.error(`Warning, skipping option "property": Invalid value specified: "${value}`)
-        return previous;
-      }
+    .option(
+      '-p, --property <property>',
+      'Properties to add to all logs',
+      (value, previous) => {
+        const valueSplit = value.split('=');
+        if (valueSplit.length !== 2) {
+          console.error(`Warning, skipping option "property": Invalid value specified: "${value}`);
+          return previous;
+        }
 
-      const current = {
-        [valueSplit[0]]: valueSplit[1]
-      }
-      return Object.assign(previous, current);
-    }, {})
+        const current = {
+          [valueSplit[0]]: valueSplit[1]
+        };
+        return Object.assign(previous, current);
+      },
+      {}
+    )
     .action(({ serverUrl, apiKey, logOtherAs, property }) => {
       try {
         const seqStream = new SeqStream({ serverUrl, apiKey, additionalProperties: property });
 
-        process.stdin.pipe(split2()).pipe(new StringStream({ logOtherAs })).pipe(seqStream).on("error", console.error);
+        process.stdin.pipe(split2()).pipe(new StringStream({ logOtherAs })).pipe(seqStream).on('error', console.error);
 
         const handler = (err, name) => {
           seqStream.end(() => {

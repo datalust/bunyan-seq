@@ -1,6 +1,6 @@
-# bunyan-seq [![Build status](https://ci.appveyor.com/api/projects/status/mrcbbrd33prih7bb?svg=true)](https://ci.appveyor.com/project/datalust/bunyan-seq) [![NPM](https://img.shields.io/npm/v/bunyan-seq.svg)](https://www.npmjs.com/package/bunyan-seq)
+# bunyan-seq ![Build](https://github.com/datalust/bunyan-seq/workflows/Test/badge.svg) ![Publish](https://github.com/datalust/bunyan-seq/workflows/Publish/badge.svg) [![NPM](https://img.shields.io/npm/v/bunyan-seq.svg)](https://www.npmjs.com/package/bunyan-seq)
 
-A Bunyan stream to send events to [Seq](https://getseq.net). Tested with Node.js versions 4.2.2 and up.
+A Bunyan stream to send events to [Seq](https://datalust.co/seq). Tested with Node.js versions 4.2.2 and up.
 
 ### Usage
 
@@ -19,13 +19,17 @@ var log = bunyan.createLogger({
     },
     seq.createStream({
       serverUrl: 'http://localhost:5341',
-      level: 'info'
+      level: 'info',
+      reemitErrorEvents: true,
+      onError: (e) => {
+        console.error('[SeqStreamCustomError] failed to log events:', e);
+      }
     })
   ]
 });
 
-log.info('Hi!');
-log.warn({ lang: 'fr' }, 'Au revoir');
+log.info('hi');
+log.warn({ lang: 'fr' }, 'au revoir');
 ```
 
 You can specify property names as tokens in the log message to control how the event is rendered in Seq:
@@ -64,4 +68,4 @@ To enable capture of output not formatted through bunyan use the `logOtherAs` pa
 node your-app.js 2> >(bunyan-seq --logOtherAs Error --serverUrl http://localhost:5341 --apiKey 1234567890) > >(bunyan-seq --logOtherAs Information --serverUrl http://localhost:5341 --apiKey 1234567890)
 ```
 
-Read the [complete documentation](https://docs.getseq.net/docs/using-nodejs).
+Read the [complete documentation](https://docs.datalust.co/docs/using-nodejs).
