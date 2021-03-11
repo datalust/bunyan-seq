@@ -8,7 +8,7 @@ declare namespace BunyanSeq {
     eventSizeLimit?: number;
     batchSizeLimit?: number;
     name?: string;
-    level: config.level;
+    level: string;
     reemitErrorEvents?: boolean;
     onError?: (e: Error) => void;
   }
