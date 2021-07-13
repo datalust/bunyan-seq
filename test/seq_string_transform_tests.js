@@ -10,7 +10,7 @@ describe('SeqStringTransform', () => {
     });
   });
   describe('object forwards', () => {
-    it('trasforms json-strings to objects', function (done) {
+    it('transforms json-strings to objects', function (done) {
       const stream = new SeqStringTransform();
       const testObject = { test: 'test' };
 
@@ -25,7 +25,7 @@ describe('SeqStringTransform', () => {
       stream.write(JSON.stringify(testObject));
       stream.end();
     });
-    it('trasforms strings to objects', function (done) {
+    it('transforms strings to objects', function (done) {
       const stream = new SeqStringTransform({ logOtherAs: 'Information' });
       const testString = 'This is a test string';
 
@@ -42,7 +42,7 @@ describe('SeqStringTransform', () => {
       stream.write(testString);
       stream.end();
     });
-    it('trasforms does not transform', function (done) {
+    it('transforms does not transform', function (done) {
       const stream = new SeqStringTransform();
       const testString = 'This is a test string';
       const testObject = { test: 'test' };
@@ -59,7 +59,7 @@ describe('SeqStringTransform', () => {
       stream.write(JSON.stringify(testObject));
       stream.end();
     });
-    it('trasforms transform after 1 sec', function (done) {
+    it('transforms transform after 1 sec', function (done) {
       const stream = new SeqStringTransform({ logOtherAs: 'Information' });
       const testString = 'This is a test string';
 

@@ -1,7 +1,8 @@
 import { Writable } from 'stream';
 
 declare namespace BunyanSeq {
-  interface SeqConfig {
+
+  interface SeqStreamConfig {
     serverUrl?: string;
     apiKey?: string;
     maxBatchingTime?: number;
@@ -13,15 +14,8 @@ declare namespace BunyanSeq {
     onError?: (e: Error) => void;
   }
 
-  interface SeqStreamConfig {
-    name?: string;
-    level?: string;
-    type: 'raw';
-    stream: Writable;
-    reemitErrorEvents?: boolean;
-  }
+  function createStream(config: SeqStreamConfig): Writable;
 
-  function createStream(config: BunyanSeq.SeqConfig): SeqStreamConfig;
 }
 
 export = BunyanSeq;
