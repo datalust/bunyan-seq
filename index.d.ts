@@ -9,12 +9,20 @@ declare namespace BunyanSeq {
     eventSizeLimit?: number;
     batchSizeLimit?: number;
     name?: string;
-    level: string;
+    level?: string;
     reemitErrorEvents?: boolean;
     onError?: (e: Error) => void;
   }
 
-  function createStream(config: SeqStreamConfig): Writable;
+  interface SeqBunyanStream {
+    name?: string;
+    level?: string;
+    type: 'raw';
+    stream: Writable,
+    reemitErrorEvents?: boolean
+  }
+
+  function createStream(config: SeqStreamConfig): SeqBunyanStream;
 
 }
 
