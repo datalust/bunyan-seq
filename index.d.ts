@@ -1,8 +1,8 @@
-import { LogLevel } from 'bunyan';
+import { LogLevel, Stream } from 'bunyan';
 
 declare namespace BunyanSeq {
 
-  interface SeqStreamConfig {
+  interface SeqStreamOptions {
     serverUrl?: string;
     apiKey?: string;
     maxBatchingTime?: number;
@@ -11,18 +11,10 @@ declare namespace BunyanSeq {
     name?: string;
     level?: LogLevel;
     reemitErrorEvents?: boolean;
-    onError?: (e: Error) => void;
+    onError?(e: Error): void;
   }
 
-  interface SeqBunyanStream {
-    name?: string;
-    level?: LogLevel;
-    type: 'raw';
-    stream: NodeJS.WritableStream,
-    reemitErrorEvents?: boolean
-  }
-
-  function createStream(config: SeqStreamConfig): SeqBunyanStream;
+  function createStream(options?: SeqStreamOptions): Stream;
 
 }
 
