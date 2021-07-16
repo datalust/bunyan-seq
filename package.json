@@ -8,7 +8,9 @@
     "start": "node ./example/example.js",
     "test:cli": "node ./example/example.js | node ./cli.js --property test-property=bunyanTestCli",
     "lint": "npx prettier --write \"./**/*.js\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "start:ts": "npm run build:example && node ./example/usage.js",
+    "build:example": "tsc"
   },
   "bin": {
     "bunyan-seq": "./cli.js"
