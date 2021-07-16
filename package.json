@@ -1,13 +1,14 @@
 {
   "name": "bunyan-seq",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "A Bunyan stream that sends log events to Seq",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
     "start": "node ./example/example.js",
     "test:cli": "node ./example/example.js | node ./cli.js --property test-property=bunyanTestCli",
-    "lint": "npx prettier --write \"./**/*.js\""
+    "lint": "npx prettier --write \"./**/*.js\"",
+    "typecheck": "tsc --noEmit"
   },
   "bin": {
     "bunyan-seq": "./cli.js"
@@ -28,10 +29,12 @@
   "homepage": "https://github.com/datalust/bunyan-seq#readme",
   "devDependencies": {
     "@types/node": "^16.3.1",
+    "@types/bunyan": "^1.8.7",
     "bunyan": "^1.8.15",
     "mocha": "^7.2.0",
     "prettier": "^2.2.1",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "commander": "^5.1.0",

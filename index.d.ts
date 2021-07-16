@@ -1,4 +1,4 @@
-import { Writable } from 'stream';
+import { LogLevel } from 'bunyan';
 
 declare namespace BunyanSeq {
 
@@ -9,16 +9,16 @@ declare namespace BunyanSeq {
     eventSizeLimit?: number;
     batchSizeLimit?: number;
     name?: string;
-    level?: string;
+    level?: LogLevel;
     reemitErrorEvents?: boolean;
     onError?: (e: Error) => void;
   }
 
   interface SeqBunyanStream {
     name?: string;
-    level?: string;
+    level?: LogLevel;
     type: 'raw';
-    stream: Writable,
+    stream: NodeJS.WritableStream,
     reemitErrorEvents?: boolean
   }
 
