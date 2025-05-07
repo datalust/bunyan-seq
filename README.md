@@ -2,6 +2,10 @@
 
 A Bunyan stream to send events to [Seq](https://datalust.co/seq). Tested with Node.js versions 4.2.2 and up.
 
+> [!WARNING]
+>
+> This package is deprecated due to inactivity in the upstream Bunyan project, and no further updates are planned at this time.
+
 ## Usage
 
 First, install `bunyan-seq` as a global tool:
